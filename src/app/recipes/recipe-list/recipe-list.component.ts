@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Recipe } from '../recipe.model';
 
 @Component({
@@ -7,14 +7,19 @@ import { Recipe } from '../recipe.model';
   styleUrls: ['./recipe-list.component.css']
 })
 export class RecipeListComponent implements OnInit {
+  @Output() recipeWasSelected = new EventEmitter<Recipe>();
   recipes: Recipe[] = [
-    new Recipe('A Test Recipe', 'This is simply a test', 'https://lh3.googleusercontent.com/proxy/4S8EjIMaQZxqalzLMkRQcyhBaZJeKgQtp9zeNj4rd2c7B5UW49MssvD1nW_aiwh1rpNIzT4-O3DVGCFtMLULUU4OwWOKv50UvZfw-8KWwVEPc8riCjgJ5DJGENx7cwh_QeV62QItMaZ8fekA5D_-cYANQiKd0zLN19VwiQd6qloO8l_HXLhU03D4L2nwMCHPrqsl'),
-    new Recipe('A Test Recipe', 'This is simply a test', 'https://lh3.googleusercontent.com/proxy/4S8EjIMaQZxqalzLMkRQcyhBaZJeKgQtp9zeNj4rd2c7B5UW49MssvD1nW_aiwh1rpNIzT4-O3DVGCFtMLULUU4OwWOKv50UvZfw-8KWwVEPc8riCjgJ5DJGENx7cwh_QeV62QItMaZ8fekA5D_-cYANQiKd0zLN19VwiQd6qloO8l_HXLhU03D4L2nwMCHPrqsl')
+    new Recipe('A Test Recipe', 'This is simply a test', 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/delish-202001-mozzarella-stuffed-chicken-parm-0266-portrait-pf-1583438260.jpg'),
+    new Recipe('Another Test Recipe', 'This is simply a test', 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/delish-202001-mozzarella-stuffed-chicken-parm-0266-portrait-pf-1583438260.jpg')
   ];
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+  }
+
+  onRecipeSelected(recipe: Recipe) {
+    this.recipeWasSelected.emit(recipe);
   }
 
 }
